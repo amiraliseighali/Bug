@@ -1,0 +1,22 @@
+<h1>Bugs</h1>
+<p *ngIf="!bugs">loading</p>
+<table class="table table-striped" *ngIf="bugs">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let bug of bugs">
+            <td>{{bug.title}}</td>
+            <td>{{bug.description | slice: 0:20}}...</td>
+            <td>{{bug.time}}</td>
+            <td></td>
+        </tr>
+    </tbody>
+    
+
+</table>
