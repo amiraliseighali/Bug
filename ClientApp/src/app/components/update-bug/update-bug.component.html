@@ -1,1 +1,31 @@
-<p>update-bug works!</p>
+<div class="update-bug">
+    <form [formGroup]="updateBugForm">
+        <div class="form-group">
+            <label for="title" class="required">Title</label>
+            <input type="text" class="form-control" id="title" formControlName="title" placeholder="Bug title">
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="required">Description</label>
+            <input type="text" class="form-control" id="description" formControlName="description" placeholder="bug description">
+        </div>
+    
+    
+        <div class="row">
+            <div class="col-md-4 col-xs-4 col-sm-4">
+                <div class="form-group">
+                    <label for="dateStart">Time </label>
+                    <input type="date" 
+                    class="form-control" 
+                    id="time" 
+                    placeholder="time"
+                    formControlName="time">
+                </div>
+            </div>
+        </div>
+    
+        <button class="btn btn-success" type="submit" (click)="onSubmit();">Update</button>
+        <button class="btn btn-default" [routerLink]="['/bugs']">Cancel</button>
+    
+    </form>
+    </div>

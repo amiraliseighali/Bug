@@ -1,13 +1,29 @@
 <div class="add-bug">
-    <form [formGroup]="addBugForm" (ng-submit)="onSubmit()">
+    <div *ngIf="showError" class="alert alert-danger" role="alert">
+        Not Added, Try Again
+    </div>
+    <form [formGroup]="addBugForm">
         <div class="form-group">
             <label for="title" class="required">Title</label>
             <input type="text" class="form-control" id="title" formControlName="title" placeholder="Bug title">
+        </div>
+        <div *ngIf="addBugForm.controls['title'].invalid  && (addBugForm.controls['title'].dirty || addBugForm.controls['title'].touched)" class="alert alert-danger">
+            <div *ngIf="addBugForm.controls['title'].errors.required">
+                Bug title is required
+            </div>
         </div>
 
         <div class="form-group">
             <label for="description" class="required">Description</label>
             <input type="text" class="form-control" id="description" formControlName="description" placeholder="bug description">
+        </div>
+        <div *ngIf="addBugForm.controls['description'].invalid  && (addBugForm.controls['description'].dirty || addBugForm.controls['description'].touched)" class="alert alert-danger">
+            <div *ngIf="addBugForm.controls['description'].errors.required">
+                Bug description is required
+            </div>
+            <div *ngIf="addBugForm.controls['description'].errors.minlength">
+                Bug description needs to be longer than 10 characters
+            </div>
         </div>
     
     
@@ -24,7 +40,7 @@
             </div>
         </div>
     
-        <button class="btn btn-success" type="submit">Add</button>
+        <button class="btn btn-success" type="submit" (click)="onSubmit();"  [disabled]="addBugForm.pristine || addBugForm.invalid">Add</button>
         <button class="btn btn-default" [routerLink]="['/bugs']">Cancel</button>
     
     </form>

@@ -1,5 +1,6 @@
 using Bugs.Data;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Bugs.Controllers
 {
@@ -13,20 +14,27 @@ namespace Bugs.Controllers
         }
         [HttpPost("AddBug")]
         public IActionResult AddBug([FromBody]Bug bug){
-            _service.AddBug(bug);
-            return Ok();
+            try{
+                if(bug.Title != null){
+                    _service.AddBug(bug);
+                    return Ok();
+                }
+                return BadRequest("not added ");
+            }catch(Exception e){
+                return BadRequest(e.Message);
+                }
+            
         }
         [HttpGet("[Action]")]
         public IActionResult GetBugs(){
             var AllBugs = _service.GetAllBugs();
             return Ok(AllBugs);
         }
-        [HttpPut("/UpdateBug/{id}")]
+        [HttpPut("UpdateBug/{id}")]
         public IActionResult UpdateBug(int id, [FromBody]Bug bug)
         {
             _service.UpdateBug(id, bug);
             return Ok(bug);
-
         }
         [HttpDelete("DeleteBug/{id}")]
         public IActionResult DeleteBug(int id)

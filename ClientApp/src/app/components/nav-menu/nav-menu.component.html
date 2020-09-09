@@ -20,16 +20,26 @@
         [ngClass]="{ show: isExpanded }"
       >
         <ul class="navbar-nav flex-grow">
-          <li
+          <li  *ngIf="auth.loggedIn"
             class="nav-item"
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <a class="nav-link text-dark" [routerLink]="['/new-bug']">Add</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li  *ngIf="auth.loggedIn" class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/bugs']"
               >Bugs</a
+            >
+          </li>
+          <li *ngIf="!auth.loggedIn" class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" (click)="auth.login()"
+              >Log In</a
+            >
+          </li>
+          <li *ngIf="auth.loggedIn" class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" (click)="auth.logout()"
+              >Log out</a
             >
           </li>
         </ul>

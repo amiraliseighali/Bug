@@ -10,21 +10,23 @@ import { Router } from '@angular/router';
 })
 export class NewBugComponent implements OnInit {
   addBugForm: FormGroup;
+  showError: Boolean = false;
   constructor(private service: BugService, private fb: FormBuilder,private router: Router) { }
 
   ngOnInit() {
     this.addBugForm = this.fb.group({
       id:[Math.floor(Math.random()*1000)],
       title:[null, Validators.required],
-      description:[null, Validators.compose([Validators.required, Validators.minLength(30)])],
+      description:[null, Validators.compose([Validators.required, Validators.minLength(10)])],
       time:[null],
     })
   }
   onSubmit(){
-    console.log('It works here');
     this.service.addBug(this.addBugForm.value).subscribe(
-      data => {this.router.navigate(["/bugs"]) }
-      )
-  }
+      data => {this.router.navigate(["/bugs"]);
+     },error => {
+       this.showError = true;
 
-}
+     })
+    }
+  }

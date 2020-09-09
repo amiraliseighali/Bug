@@ -1,1 +1,12 @@
-<p>delete-bug works!</p>
+<div class="bug-details">
+    <div class="card" *ngIf="bug">
+        <div class="card-body">
+            <h5 class="card-title">{{bug.title}}</h5>
+            <h5 class="card-title">{{bug.time}}</h5>
+            <p>{{bug.description}}</p>
+            <a class="card-link" [routerLink]="['/bugs']">Cancel</a>
+            <a class="card-link" type="submit" (click)="onSubmit()"> Delete</a>
+        </div>
+
+    </div>
+</div>

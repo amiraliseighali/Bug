@@ -15,4 +15,13 @@ export class BugService {
   addBug(bug: Bug){
     return this.http.post(this._baseURL+"/AddBug/", bug);
   }
+  getBugById(id: number){
+    return this.http.get<Bug>(this._baseURL+"/SingleBug/"+id);
+  }
+  updateBug(bug: Bug){
+    return this.http.put(this._baseURL+"/UpdateBug/"+bug.id,bug);
+  }
+  deleteBug(id: number){
+    return this.http.delete(this._baseURL+"/DeleteBug/"+id);
+  }
 }

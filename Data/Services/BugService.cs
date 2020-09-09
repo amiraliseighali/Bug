@@ -20,7 +20,8 @@ namespace Bugs.Data
         }
         public void UpdateBug(int id, Bug newBug){
             var oldBug = Data.Bugs.FirstOrDefault(n => n.Id == id);
-            if(oldBug != null){
+            if(oldBug != null)
+            {
                 oldBug.Title = newBug.Title;
                 oldBug.Description = newBug.Description;
                 oldBug.Time = newBug.Time;  

@@ -1,1 +1,13 @@
 <p>show-bug works!</p>
+<div class="bug-details">
+    <div class="card" *ngIf="bug">
+        <div class="card-body">
+            <h5 class="card-title">{{bug.title}}</h5>
+            <h5 class="card-title">{{bug.time}}</h5>
+            <p>{{bug.description}}</p>
+            <a class="card-link" [routerLink]="['/bugs']">All bugs</a>
+            <a class="card-link" [routerLink]="['/update-bug', bug.id]">update</a>
+        </div>
+
+    </div>
+</div>

@@ -14,7 +14,10 @@
             <td>{{bug.title}}</td>
             <td>{{bug.description | slice: 0:20}}...</td>
             <td>{{bug.time}}</td>
-            <td></td>
+            <td>
+                <button type="button" class="btn btn-sm btn-default" (click)="showBug(bug.id)">Show</button>
+                <button type="button" class="btn btn-sm btn-danger" (click)="deleteBug(bug.id)">Delete</button>
+            </td>
         </tr>
     </tbody>
     
